@@ -11,3 +11,12 @@ const searchPhone = async () => {
     getData(data);
 
 }
+//get api data
+const getData = name => {
+    const mobiles = name.data.slice(0,20);
+    const mobilesDiv = document.getElementById('mobiles-gadget');
+    mobilesDiv.textContent = '';
+    
+
+
+}
