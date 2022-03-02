@@ -8,7 +8,7 @@ const searchMobile = async () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
     const res = await fetch(url);
-    const data = await res.json();  // wait for the response
+    const data = await res.json();
     getData(data);
 
 }
@@ -47,7 +47,7 @@ const getData = name => {
         mobileDiv.innerHTML = `
         <div class="w-full p-4 text-center">
             <div class="text-2xl text-slate-900 dark:text-sky-400">
-                Please write a valid name
+            This product in not available..........
             </div>
         </div>
         `;
@@ -66,7 +66,7 @@ const loadMore = async name => {
     const url = `https://openapi.programming-hero.com/api/phone/${name}`;
 
     const res = await fetch(url);
-    const data = await res.json();  // wait for the response
+    const data = await res.json();
     mobileDetails(data);
 }
 
