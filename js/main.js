@@ -70,7 +70,6 @@ const loadMore = async name => {
     mobileDetails(data);
 }
 
-
 //mobile details
 const mobileDetails = details => {
     const mobileData = details.data;
