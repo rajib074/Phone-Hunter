@@ -61,3 +61,11 @@ const getData = name => {
         `;
     }
 }
+// lode more
+const loadMore = async name => {
+    const url = `https://openapi.programming-hero.com/api/phone/${name}`;
+
+    const res = await fetch(url);
+    const data = await res.json();  // wait for the response
+    mobileDetails(data);
+}
