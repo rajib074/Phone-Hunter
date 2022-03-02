@@ -69,3 +69,60 @@ const loadMore = async name => {
     const data = await res.json();  // wait for the response
     mobileDetails(data);
 }
+
+
+//mobile details
+const mobileDetails = details => {
+    const mobileData = details.data;
+    const sensors = mobileData.mainFeatures.sensors;
+    const keys = mobileData.others ? Object.entries(mobileData.others) : [];
+    const releaseDate = mobileData.releaseDate ? mobileData.releaseDate : 'No Release Date Found';
+    const modelDetails = document.getElementById('phone-details');
+
+    modelDetails.innerHTML = `
+    <div class="mx-auto px-4 py-8 bg-white rounded-lg max-w-4xl mt-12 mb-16 shadow-2xl">
+        <div class="md:flex flex-wrap">
+            <div class="w-full md:w-1/2 px-4 mb-12 md:mb-0">
+                <div class="relative">
+                    <img class="w-full" src="${mobileData.image}" alt="">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 px-4">
+                <div class="flex flex-wrap -mx-4">
+                    <div class="w-full px-4">
+                        <div class="text-3xl font-bold text-black-900 dark:text-sky-400">
+                            ${mobileData.name}
+                        </div>
+                        <div class="text-lg text-amber-900 dark:text-sky-400">
+                            ${mobileData.brand}
+                        </div>
+                        <div class="mt-6">
+                            <p class="mt-2 text-lg text-lime-900 dark:text-sky-400 flex gap-4">
+                                <strong>ID:</strong>
+                                <span>${mobileData.slug}</span>
+                            </p>
+                            <p class="mt-2 text-lg text-lime-900 dark:text-sky-400 flex gap-4">
+                                <strong>Storage:</strong>
+                                <span>${mobileData.mainFeatures.storage}</span>                                
+                            </p>
+                            <p class="mt-2 text-lg text-lime-900 dark:text-sky-400 flex gap-4">
+                                <strong>Release Date:</strong>
+                                <span>${releaseDate}</span>
+                            </p>
+                            <div class="mt-2 text-lg text-lime-900 dark:text-sky-400 flex gap-4">
+                                <strong>Sensor:</strong>
+                                <ul>${sensors.map(sensor => `<li>${sensor}</li>`).join('')}</ul>
+                            </div>
+                            <div class="mt-2 text-lg text-lime-900 dark:text-sky-400 flex gap-4">
+                                <strong>Others:</strong>
+                                <ul>${keys.map((value) => `<li>${value[0]} : ${value[1]}</li>`).join('')}</ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+}
+
